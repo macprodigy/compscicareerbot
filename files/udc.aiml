@@ -2,27 +2,64 @@
 <aiml>
   <category>
     <pattern>*</pattern>
-    <template>My apologies, I do not understand. Could you rephrase that?</template>
+    <template>
+        <random>
+            <li>My apologies, I do not understand. Could you rephrase that?</li>
+            <li>Sorry could you say that again differently?</li>
+            <li>I'm not sure what you meant, can you rephrase?</li>
+        </random>
+    </template>
   </category>
 <category>
-    <pattern>Hello *</pattern>
-    <template>Hello! I'm the WGU CompSci Career Counseling Bot.Â 
+    <pattern>GENERALGREETING</pattern>
+    <template>Hello! I'm the WGU CompSci Career Counseling Bot, but you can call me Botter.
 
-I can help you find career options based on your strengths and preferences. </template>
+I can help you find career options based on your strengths and preferences. 
+<split/>
+<delay>2</delay>
+Shall we get started?
+    </template>
 </category>
 
-<category><pattern>Hi *</pattern><template><srai>HELLO *</srai></template></category>
+<category><pattern>Hello *</pattern><template><srai>GENERALGREETING</srai></template></category>
+<category><pattern>Hello</pattern><template><srai>GENERALGREETING</srai></template></category>
+<category><pattern>Hi *</pattern><template><srai>GENERALGREETING</srai></template></category>
+<category><pattern>Hi</pattern><template><srai>GENERALGREETING</srai></template></category>
+<category><pattern>Howdy *</pattern><template><srai>GENERALGREETING</srai></template></category>
+<category><pattern>Howdy</pattern><template><srai>GENERALGREETING</srai></template></category>
 
-<category><pattern>Hi</pattern><template><srai>HI *</srai></template></category>
+<category>
+    <pattern>AFFIRMATIVE</pattern>
+    <that>LT SPLIT GT LT SLASH SPLIT GT LT DELAY GT 1 LT SLASH DELAY GT SHALL WE GET STARTED</that>
+        <template>
+        Great! Here's a list of student strengths and preferences I can work with
+        <split/>
+        <delay>2</delay>
+        Example list
+    </template>
+</category>
 
-<category><pattern>Howdy *</pattern><template><srai>HELLO *</srai></template></category>
-
-<category><pattern>Howdy</pattern><template><srai>HOWDY *</srai></template></category>
-
+<category><pattern>Yeah</pattern><template><srai>AFFIRMATIVE</srai></template></category>
+<category><pattern>Yes</pattern><template><srai>AFFIRMATIVE</srai></template></category>
+<category><pattern>Yes *</pattern><template><srai>AFFIRMATIVE</srai></template></category>
+<category><pattern>Yep</pattern><template><srai>AFFIRMATIVE</srai></template></category>
+<category><pattern>Yup</pattern><template><srai>AFFIRMATIVE</srai></template></category>
+<category><pattern>Sure</pattern><template><srai>AFFIRMATIVE</srai></template></category>
+<category><pattern>Sure *</pattern><template><srai>AFFIRMATIVE</srai></template></category>
+<category><pattern>Lets do it</pattern><template><srai>AFFIRMATIVE</srai></template></category>
 
 
 <category>
-    <pattern>Brandon</pattern>
-    <template>Edit bot response</template>
+    <pattern>NEGATIVE</pattern>
+    <that>LT SPLIT GT LT SLASH SPLIT GT LT DELAY GT 1 LT SLASH DELAY GT SHALL WE GET STARTED</that>
+    <template>That's ok. Whenever you are ready, just say Hi again</template>
 </category>
+
+<category><pattern>No</pattern><template><srai>NEGATIVE</srai></template></category>
+<category><pattern>No *</pattern><template><srai>NEGATIVE</srai></template></category>
+<category><pattern>Nope</pattern><template><srai>NEGATIVE</srai></template></category>
+<category><pattern>Nah</pattern><template><srai>NEGATIVE</srai></template></category>
+<category><pattern>Maybe later</pattern><template><srai>NEGATIVE</srai></template></category>
+
+
 </aiml>

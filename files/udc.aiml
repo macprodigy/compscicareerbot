@@ -21,45 +21,71 @@ Shall we get started?
     </template>
 </category>
 
-<category><pattern>Hello *</pattern><template><srai>GENERALGREETING</srai></template></category>
-<category><pattern>Hello</pattern><template><srai>GENERALGREETING</srai></template></category>
-<category><pattern>Hi *</pattern><template><srai>GENERALGREETING</srai></template></category>
-<category><pattern>Hi</pattern><template><srai>GENERALGREETING</srai></template></category>
-<category><pattern>Howdy *</pattern><template><srai>GENERALGREETING</srai></template></category>
-<category><pattern>Howdy</pattern><template><srai>GENERALGREETING</srai></template></category>
-
 <category>
-    <pattern>AFFIRMATIVE</pattern>
-    <that>LT SPLIT GT LT SLASH SPLIT GT LT DELAY GT 1 LT SLASH DELAY GT SHALL WE GET STARTED</that>
-        <template>
-        Great! Here's a list of student strengths and preferences I can work with
-        <split/>
-        <delay>2</delay>
-        Example list
+    <pattern>AFFIRMATIVERESPONSE</pattern>
+    <that>LT SPLIT GT LT SLASH SPLIT GT LT DELAY GT 2 LT SLASH DELAY GT SHALL WE GET STARTED</that>
+    <template>
+        Excellent. In order to find jobs near you, may I please have your zip code?
     </template>
 </category>
 
-<category><pattern>Yeah</pattern><template><srai>AFFIRMATIVE</srai></template></category>
-<category><pattern>Yes</pattern><template><srai>AFFIRMATIVE</srai></template></category>
-<category><pattern>Yes *</pattern><template><srai>AFFIRMATIVE</srai></template></category>
-<category><pattern>Yep</pattern><template><srai>AFFIRMATIVE</srai></template></category>
-<category><pattern>Yup</pattern><template><srai>AFFIRMATIVE</srai></template></category>
-<category><pattern>Sure</pattern><template><srai>AFFIRMATIVE</srai></template></category>
-<category><pattern>Sure *</pattern><template><srai>AFFIRMATIVE</srai></template></category>
-<category><pattern>Lets do it</pattern><template><srai>AFFIRMATIVE</srai></template></category>
-
+<category>
+    <pattern>#<set>ZIPCODES</set>#</pattern>
+    <that>IN ORDER TO FIND JOBS NEAR YOU, MAY I PLEASE HAVE YOUR ZIP CODE</that>
+    <template>
+        Got it, I will use <set var="zipcode"><star index="2" /></set> to find jobs for you. 
+        <split/>
+        <delay>2</delay>
+        To help me find the right job for you, tell me one of your strengths.
+        Or, you can tell me about your preference for the type of work you'd like to do.
+        If you're not sure what to say, just say "Example".
+    </template>
+</category>
 
 <category>
-    <pattern>NEGATIVE</pattern>
-    <that>LT SPLIT GT LT SLASH SPLIT GT LT DELAY GT 1 LT SLASH DELAY GT SHALL WE GET STARTED</that>
+    <pattern>EXAMPLE</pattern>
+    <template>
+        You can say things like "Programming" or "Software Development" and I'll help you find jobs for Software Developers
+        or you can say "Database" or "SQL" and I'll search for jobs for Database Administrators.
+        <split/>
+        <delay>2</delay>
+        What shall I search for?
+    </template>
+</category>
+
+<category>
+    <pattern>#<set>STRENGTHS</set>#</pattern>
+    <template>
+        <think>
+        <set var="career"><map name="strengths2careers"><star index="2"/></map></set>
+        </think>
+        I still know your zipcode is <get var="zipcode" />
+        <map name="careers2details"><get var="career" /></map>
+        <split/>
+        <delay>2</delay>
+        Click below to search for jobs.
+        <link>
+            <text><get var="career" /></text>
+            <url><map name="careers2urls"><get var="career" /></map><get var="zipcode" /></url>
+        </link>
+    </template>
+</category>
+
+<category>
+    <pattern>NEGATIVERESPONSE</pattern>
+    <that>LT SPLIT GT LT SLASH SPLIT GT LT DELAY GT 2 LT SLASH DELAY GT SHALL WE GET STARTED</that>
     <template>That's ok. Whenever you are ready, just say Hi again</template>
 </category>
 
-<category><pattern>No</pattern><template><srai>NEGATIVE</srai></template></category>
-<category><pattern>No *</pattern><template><srai>NEGATIVE</srai></template></category>
-<category><pattern>Nope</pattern><template><srai>NEGATIVE</srai></template></category>
-<category><pattern>Nah</pattern><template><srai>NEGATIVE</srai></template></category>
-<category><pattern>Maybe later</pattern><template><srai>NEGATIVE</srai></template></category>
+<!--  Reductions -->
+<!-- for Greeting -->
+<category><pattern><set>GREETINGS</set>#</pattern><template><srai>GENERALGREETING</srai></template></category>
 
+
+<!-- for NEGATIVE -->
+<category><pattern><set>NEGATIVE</set>#</pattern><template><srai>NEGATIVERESPONSE</srai></template></category>
+
+<!-- for AFFIRMATIVE -->
+<category><pattern><set>AFFIRMATIVE</set>#</pattern><template><srai>AFFIRMATIVERESPONSE</srai></template></category>
 
 </aiml>

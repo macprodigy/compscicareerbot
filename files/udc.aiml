@@ -30,6 +30,7 @@ Shall we get started?
 </category>
 
 <category>
+    <!-- ZIPCODES set was extracted from the IRS data set at https://www.irs.gov/statistics/soi-tax-stats-individual-income-tax-statistics-2017-zip-code-data-soi -->
     <pattern>#<set>ZIPCODES</set>#</pattern>
     <that>IN ORDER TO FIND JOBS NEAR YOU, MAY I PLEASE HAVE YOUR ZIP CODE</that>
     <template>
@@ -65,6 +66,8 @@ Shall we get started?
         Click below to search for jobs.
         <link>
             <text><get var="career" /></text>
+            <!-- career2urls is paraphrased from descriptions on "Top 10 Computer Science Jobs" https://www.thebalancecareers.com/top-jobs-for-computer-science-majors-2059634 -->
+            <!-- urls are built to match the scheme and parameters of careerbuilder.com -->
             <url><map name="careers2urls"><get var="career" /></map><get name="zipcode" /></url>
         </link>
     </template>

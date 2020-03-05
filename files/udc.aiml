@@ -14,7 +14,7 @@
     <pattern>GENERALGREETING</pattern>
     <template>Hello! I'm the WGU CompSci Career Counseling Bot, but you can call me Botter.
 
-I can help you find career options based on your strengths and preferences. 
+    I can help you find career options based on your strengths and preferences. 
 <split/>
 <delay>2</delay>
 Shall we get started?
@@ -33,7 +33,7 @@ Shall we get started?
     <pattern>#<set>ZIPCODES</set>#</pattern>
     <that>IN ORDER TO FIND JOBS NEAR YOU, MAY I PLEASE HAVE YOUR ZIP CODE</that>
     <template>
-        Got it, I will use <set var="zipcode"><star index="2" /></set> to find jobs for you. 
+        Got it, I will use <set name="zipcode" ><star index="2" /></set> to find jobs for you. 
         <split/>
         <delay>2</delay>
         To help me find the right job for you, tell me one of your strengths.
@@ -59,14 +59,13 @@ Shall we get started?
         <think>
         <set var="career"><map name="strengths2careers"><star index="2"/></map></set>
         </think>
-        I still know your zipcode is <get var="zipcode" />
         <map name="careers2details"><get var="career" /></map>
         <split/>
         <delay>2</delay>
         Click below to search for jobs.
         <link>
             <text><get var="career" /></text>
-            <url><map name="careers2urls"><get var="career" /></map><get var="zipcode" /></url>
+            <url><map name="careers2urls"><get var="career" /></map><get name="zipcode" /></url>
         </link>
     </template>
 </category>

@@ -30,6 +30,12 @@ Shall we get started?
 </category>
 
 <category>
+    <pattern>NEGATIVERESPONSE</pattern>
+    <that>LT SPLIT GT LT SLASH SPLIT GT LT DELAY GT 2 LT SLASH DELAY GT SHALL WE GET STARTED</that>
+    <template>That's ok. Whenever you are ready, just say Hi again</template>
+</category>
+
+<category>
     <!-- ZIPCODES set was extracted from the IRS data set at https://www.irs.gov/statistics/soi-tax-stats-individual-income-tax-statistics-2017-zip-code-data-soi -->
     <pattern>#<set>ZIPCODES</set>#</pattern>
     <that>IN ORDER TO FIND JOBS NEAR YOU, MAY I PLEASE HAVE YOUR ZIP CODE</that>
@@ -73,16 +79,9 @@ Shall we get started?
     </template>
 </category>
 
-<category>
-    <pattern>NEGATIVERESPONSE</pattern>
-    <that>LT SPLIT GT LT SLASH SPLIT GT LT DELAY GT 2 LT SLASH DELAY GT SHALL WE GET STARTED</that>
-    <template>That's ok. Whenever you are ready, just say Hi again</template>
-</category>
-
 <!--  Reductions -->
-<!-- for Greeting -->
+<!-- for GREETINGS -->
 <category><pattern><set>GREETINGS</set>#</pattern><template><srai>GENERALGREETING</srai></template></category>
-
 
 <!-- for NEGATIVE -->
 <category><pattern><set>NEGATIVE</set>#</pattern><template><srai>NEGATIVERESPONSE</srai></template></category>
